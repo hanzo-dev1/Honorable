@@ -1,11 +1,12 @@
+import { Mail } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 import { BookCallButton } from "@/components/ui/BookCallButton";
+import { LinkedInLogo } from "@/components/logos/LinkedInLogo";
 import { contact } from "@/lib/site";
 
 const links = [
-  { label: "Email", href: `mailto:${contact.email}` },
-  { label: "LinkedIn", href: contact.linkedin },
-  { label: "GitHub", href: contact.github },
+  { label: "Email", href: `mailto:${contact.email}`, Icon: Mail },
+  { label: "LinkedIn", href: contact.linkedin, Icon: LinkedInLogo },
 ];
 
 export function Contact() {
@@ -24,16 +25,17 @@ export function Contact() {
         </BookCallButton>
       </div>
 
-      <div className="mx-auto mt-16 flex max-w-md flex-col divide-y divide-line border-y border-line">
+      <div className="mt-16 flex items-center justify-center gap-4">
         {links.map((link) => (
           <a
             key={link.label}
             href={link.href}
             target={link.href.startsWith("http") ? "_blank" : undefined}
             rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="flex items-center justify-center py-4 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-mute transition-colors duration-180 hover:text-signal"
+            aria-label={link.label}
+            className="flex h-11 w-11 items-center justify-center rounded-card border border-line text-mute transition-all duration-180 ease-decisive hover:border-line-hi hover:text-signal"
           >
-            {link.label}
+            <link.Icon className="h-4 w-4" />
           </a>
         ))}
       </div>
