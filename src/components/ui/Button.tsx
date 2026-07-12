@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type ButtonVariant = "primary" | "ghost" | "link";
+type ButtonVariant = "solid" | "ghost" | "text";
 
 interface ButtonBaseProps {
   variant?: ButtonVariant;
@@ -16,17 +16,16 @@ type ButtonAsAnchor = ButtonBaseProps &
 type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 font-sans text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 font-display text-sm font-medium transition-all duration-[180ms] ease-[var(--ease-decisive)] disabled:pointer-events-none disabled:opacity-50";
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    "rounded-full px-6 py-3 bg-gradient-to-b from-[#ff8a4c] to-accent text-white shadow-[0_1px_0_0_rgba(255,255,255,0.15)_inset,0_8px_20px_-6px_rgba(255,107,44,0.55)] hover:brightness-110 active:brightness-95",
+  solid: "rounded-card bg-bone px-6 py-3 text-void hover:bg-white",
   ghost:
-    "rounded-full px-6 py-3 border border-border text-foreground hover:border-accent/60 hover:text-accent",
-  link: "rounded-none bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat px-0 py-0 text-foreground transition-[background-size] duration-300 ease-out hover:bg-[length:100%_1px]",
+    "rounded-card border border-line px-6 py-3 text-bone hover:border-line-hi",
+  text: "gap-1.5 text-bone hover:text-signal",
 };
 
-export function Button({ variant = "primary", className, href, ...props }: ButtonProps) {
+export function Button({ variant = "solid", className, href, ...props }: ButtonProps) {
   const classes = cn(baseStyles, variantStyles[variant], className);
 
   if (href !== undefined) {

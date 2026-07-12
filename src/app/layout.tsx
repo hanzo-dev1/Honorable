@@ -1,53 +1,82 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { display, editorial, mono } from "./fonts";
 import { MotionProvider } from "@/components/providers/MotionProvider";
+import { CursorSpotlight } from "@/components/providers/CursorSpotlight";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-});
-
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
 const title = "David Oganah — AI Automation Engineer";
 const description =
-  "I build production-grade AI automation systems for revenue, ops, and customer workflows. n8n, GPT-4o, and the modern LLM stack.";
+  "I build the systems that run the work nobody wants to do. Autonomous agents, RAG support desks, and end-to-end revenue automation for companies that have outgrown spreadsheets — deployed on n8n, wired into the tools your team already lives in.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title,
   description,
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title,
     description,
     url: siteUrl,
+    siteName: "David Oganah",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/opengraph-image"],
   },
-  // Placeholder favicon from create-next-app — swap src/app/favicon.ico
-  // for the real mark before launch.
   icons: {
     icon: "/favicon.ico",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "David Oganah",
+      url: siteUrl,
+      jobTitle: "AI Automation Engineer",
+      worksFor: {
+        "@type": "Organization",
+        name: "SabiFlow Technologies Ltd",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lagos",
+        addressCountry: "NG",
+      },
+      sameAs: [],
+    },
+    {
+      "@type": "ProfessionalService",
+      name: "SabiFlow Technologies Ltd",
+      url: siteUrl,
+      areaServed: "Worldwide",
+      founder: {
+        "@type": "Person",
+        name: "David Oganah",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lagos",
+        addressCountry: "NG",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -58,10 +87,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${display.variable} ${editorial.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="noise min-h-full flex flex-col bg-background text-foreground font-sans">
-        <MotionProvider>{children}</MotionProvider>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="flex min-h-full flex-col bg-void font-display text-bone">
+        <div className="bg-grid" aria-hidden />
+        <div className="bg-grain" aria-hidden />
+        <MotionProvider>
+          <CursorSpotlight />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );
