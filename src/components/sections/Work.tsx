@@ -1,87 +1,125 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Plus } from "lucide-react";
 import { Section } from "@/components/ui/Section";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Chip } from "@/components/ui/Chip";
+import { Hairline } from "@/components/ui/Hairline";
 import { projects } from "@/content/projects";
+import { cn } from "@/lib/utils";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+function WorkRow({ project }: { project: (typeof projects)[number] }) {
+  const [open, setOpen] = useState(false);
+  const panelId = `work-panel-${project.index}`;
+
+  return (
+    <div className="border-b border-line last:border-b-0">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="grid w-full grid-cols-12 items-center gap-4 py-9 text-left transition-colors duration-180 hover:bg-white/[0.018]"
+      >
+        <span
+          className={cn(
+            "col-span-2 font-mono text-sm tabular-nums transition-colors duration-180 md:col-span-1",
+            open ? "text-signal" : "text-faint",
+          )}
+        >
+          {project.index}
+        </span>
+
+        <div className="col-span-10 md:col-span-4">
+          <h3 className="font-display text-xl font-medium tracking-[-0.02em] text-bone md:text-2xl">
+            {project.name}
+          </h3>
+          <p className="mt-1 text-sm text-mute">{project.descriptor}</p>
+        </div>
+
+        <div className="col-span-8 col-start-3 hidden flex-wrap gap-2 md:col-span-3 md:col-start-6 md:flex">
+          {project.stack.slice(0, 4).map((tech) => (
+            <Chip key={tech}>{tech}</Chip>
+          ))}
+        </div>
+
+        <span className="col-span-8 hidden text-right font-mono text-sm text-bone md:col-span-3 md:col-start-9 md:block">
+          {project.outcome}
+        </span>
+
+        <span className="col-span-2 flex justify-end md:col-span-1">
+          <Plus
+            size={18}
+            strokeWidth={1.5}
+            className={cn(
+              "text-faint transition-transform duration-300 ease-[var(--ease-decisive)]",
+              open && "rotate-45",
+            )}
+          />
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id={panelId}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="overflow-hidden"
+          >
+            <div className="pb-10">
+              <Hairline className="mb-8" />
+              <div className="grid gap-8 md:grid-cols-3">
+                <div>
+                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
+                    The problem
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-mute">{project.problem}</p>
+                </div>
+                <div>
+                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
+                    The build
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-mute">{project.build}</p>
+                </div>
+                <div>
+                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
+                    The result
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-mute">{project.result}</p>
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <Chip key={tech}>{tech}</Chip>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function Work() {
   return (
-    <Section id="work" eyebrow="04 — Selected Work" title="Systems I've shipped.">
-      <div className="flex flex-col gap-8">
-        {projects.map((project, i) => {
-          const metrics = [
-            ...project.metrics,
-            { label: "Shipped", value: String(project.year) },
-          ].slice(0, 4);
+    <Section id="work">
+      <Eyebrow>04 — Selected work</Eyebrow>
+      <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] font-medium tracking-[-0.035em] text-bone">
+        Systems I&apos;ve shipped.
+      </h2>
 
-          return (
-            <motion.article
-              key={project.slug}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.05, ease: "easeOut" }}
-              className="group rounded-3xl border border-border p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-[0_20px_50px_-20px_rgba(255,107,44,0.25)] md:p-10"
-            >
-              <div className="flex flex-col gap-10 md:flex-row md:justify-between">
-                <div className="md:w-[58%]">
-                  <span className="font-mono text-xs uppercase tracking-wider text-muted">
-                    {project.year}
-                  </span>
-                  <h3 className="mt-3 font-display text-3xl text-foreground md:text-4xl">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-muted">{project.tagline}</p>
-
-                  <div className="mt-8 space-y-5">
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-wider text-accent">
-                        Problem
-                      </p>
-                      <p className="mt-2 text-sm text-muted">
-                        {project.problem}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="font-mono text-xs uppercase tracking-wider text-accent-secondary">
-                        Solution
-                      </p>
-                      <p className="mt-2 text-sm text-muted">
-                        {project.solution}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-2xl border border-border bg-surface p-6 md:w-[38%]">
-                  <div className="grid grid-cols-2 gap-6">
-                    {metrics.map((metric) => (
-                      <div key={metric.label} className="flex flex-col gap-1">
-                        <span className="font-display text-3xl text-foreground">
-                          {metric.value}
-                        </span>
-                        <span className="font-mono text-xs uppercase tracking-wider text-muted">
-                          {metric.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-2">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          );
-        })}
+      <div className="mt-12 border-t border-line">
+        {projects.map((project) => (
+          <WorkRow key={project.index} project={project} />
+        ))}
       </div>
     </Section>
   );
