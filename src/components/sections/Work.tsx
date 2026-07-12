@@ -111,7 +111,7 @@ function WorkRow({ project }: { project: (typeof projects)[number] }) {
 export function Work() {
   return (
     <Section id="work">
-      <Eyebrow>04 — Selected work</Eyebrow>
+      <Eyebrow>Selected work</Eyebrow>
       <h2 className="mt-4 font-display text-[clamp(2rem,3.5vw,3rem)] font-medium tracking-[-0.035em] text-bone">
         Systems I&apos;ve shipped.
       </h2>
