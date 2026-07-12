@@ -42,7 +42,7 @@ export function CursorSpotlight() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-0 hidden h-[500px] w-[500px] rounded-full motion-reduce:hidden! md:block"
+      className="pointer-events-none fixed left-0 top-0 z-0 hidden h-125 w-125 rounded-full motion-reduce:hidden! md:block"
       style={{
         background:
           "radial-gradient(circle, rgba(255,255,255,0.025) 0%, transparent 70%)",
