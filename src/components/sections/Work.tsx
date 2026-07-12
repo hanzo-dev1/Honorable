@@ -56,7 +56,7 @@ function WorkRow({ project }: { project: (typeof projects)[number] }) {
             size={18}
             strokeWidth={1.5}
             className={cn(
-              "text-faint transition-transform duration-300 ease-[var(--ease-decisive)]",
+              "text-faint transition-transform duration-300 ease-decisive",
               open && "rotate-45",
             )}
           />

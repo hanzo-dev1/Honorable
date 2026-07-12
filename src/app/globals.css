@@ -179,4 +179,17 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /*
+   * Framer Motion's MotionConfig reducedMotion="user" strips the JS-driven
+   * animation but can leave transform-adjacent properties (filter, in
+   * particular) stuck mid-transition instead of resolving to their target
+   * value. A stylesheet !important beats the inline style Framer sets, so
+   * this forces the resting state without touching React/hydration.
+   */
+  .reveal-el {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
 }

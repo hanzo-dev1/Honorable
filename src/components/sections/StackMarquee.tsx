@@ -8,10 +8,10 @@ function Tile({ logo }: { logo: StackLogo }) {
   const Icon = logo.Icon;
   return (
     <div
-      className="group mx-2 flex h-14 w-14 shrink-0 items-center justify-center rounded-card border border-line bg-white/[0.02] transition-all duration-200 ease-[var(--ease-decisive)] hover:-translate-y-[3px] hover:border-line-hi"
+      className="group mx-2 flex h-14 w-14 shrink-0 items-center justify-center rounded-card border border-line bg-white/[0.02] transition-all duration-200 ease-decisive hover:-translate-y-[3px] hover:border-line-hi"
       title={logo.name}
     >
-      <Icon className="h-6 w-6 text-bone [filter:grayscale(1)_opacity(0.45)] transition-[filter] duration-200 ease-[var(--ease-decisive)] group-hover:[filter:grayscale(0)_opacity(1)]" />
+      <Icon className="h-6 w-6 text-bone [filter:grayscale(1)_opacity(0.45)] transition-[filter] duration-200 ease-decisive group-hover:[filter:grayscale(0)_opacity(1)]" />
     </div>
   );
 }

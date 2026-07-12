@@ -19,13 +19,13 @@ export function Hero() {
           className="grid gap-16 lg:grid-cols-12 lg:items-center"
         >
           <div className="lg:col-span-7">
-            <motion.div variants={reveal}>
+            <motion.div variants={reveal} className="reveal-el">
               <Eyebrow>LAGOS, NG · BUILDING SINCE 2022</Eyebrow>
             </motion.div>
 
             <motion.h1
               variants={reveal}
-              className="mt-6 font-display text-[clamp(2.75rem,6.5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.045em] text-bone"
+              className="reveal-el mt-6 font-display text-[clamp(2.75rem,6.5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.045em] text-bone"
             >
               I build the <span className="chrome-text">systems</span>
               <br />
@@ -37,15 +37,15 @@ export function Hero() {
 
             <motion.p
               variants={reveal}
-              className="mt-8 max-w-[46ch] text-[0.975rem] leading-[1.65] text-mute"
+              className="reveal-el mt-8 max-w-[46ch] text-[0.975rem] leading-[1.65] text-mute"
             >
               Autonomous agents, RAG support desks, and end-to-end revenue
               automation — deployed on n8n, wired into the tools your team
               already lives in. Built to run unattended for months.
             </motion.p>
 
-            <motion.div variants={reveal} className="mt-10 flex flex-wrap items-center gap-4">
-              <BookCallButton className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-6 py-3 font-display text-sm font-medium text-void transition-colors duration-180 ease-[var(--ease-decisive)] hover:bg-white">
+            <motion.div variants={reveal} className="reveal-el mt-10 flex flex-wrap items-center gap-4">
+              <BookCallButton className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-6 py-3 font-display text-sm font-medium text-void transition-colors duration-180 ease-decisive hover:bg-white">
                 Book a call
               </BookCallButton>
               <Button href="#work" variant="ghost">
@@ -54,7 +54,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          <motion.div variants={reveal} className="lg:col-span-5">
+          <motion.div variants={reveal} className="reveal-el lg:col-span-5">
             <SystemPanel />
             <p className="mt-4 font-mono text-xs text-faint">
               A real workflow. Runs hourly. Unattended since March.

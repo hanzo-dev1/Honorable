@@ -8,24 +8,32 @@ const CADENCE = 900;
 const LOOP_PAUSE = 2400;
 
 export function SystemPanel() {
+  // Both server and client must render the same thing on first paint —
+  // useReducedMotion() reads matchMedia synchronously on the client, so
+  // seeding state from it directly here would mismatch SSR and break
+  // hydration. Start identically on both, then correct in the effect below
+  // (which never runs during SSR).
   const reduced = useReducedMotion();
-  const [visibleCount, setVisibleCount] = useState(reduced ? systemLog.length : 0);
+  const [visibleCount, setVisibleCount] = useState(0);
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced) {
+      setVisibleCount(systemLog.length);
+      return;
+    }
 
     let timeout: ReturnType<typeof setTimeout>;
 
     function advance(count: number) {
       if (count > systemLog.length) {
-        timeout = setTimeout(() => advance(0), LOOP_PAUSE);
+        timeout = setTimeout(() => advance(1), LOOP_PAUSE);
         return;
       }
       setVisibleCount(count);
       timeout = setTimeout(() => advance(count + 1), CADENCE);
     }
 
-    advance(0);
+    advance(1);
     return () => clearTimeout(timeout);
   }, [reduced]);
 

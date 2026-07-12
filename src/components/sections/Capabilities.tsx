@@ -18,7 +18,7 @@ export function Capabilities() {
               key={capability.name}
               className="group relative grid grid-cols-12 items-start gap-4 border-b border-line py-9 last:border-b-0"
             >
-              <span className="absolute left-0 top-0 h-full w-0.5 origin-top scale-y-0 bg-signal transition-transform duration-[240ms] ease-[var(--ease-decisive)] group-hover:scale-y-100" />
+              <span className="absolute left-0 top-0 h-full w-0.5 origin-top scale-y-0 bg-signal transition-transform duration-[240ms] ease-decisive group-hover:scale-y-100" />
 
               <div className="col-span-12 pl-4 md:col-span-4">
                 <Icon size={16} strokeWidth={1.5} className="text-faint" />

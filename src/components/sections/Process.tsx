@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Hairline } from "@/components/ui/Hairline";
 import { processSteps } from "@/content/process";
 
 function PinnedProcess() {
@@ -23,7 +22,7 @@ function PinnedProcess() {
   return (
     <div
       ref={sectionRef}
-      className="relative hidden lg:block"
+      className="relative hidden lg:block lg:motion-reduce:hidden!"
       style={{ height: `${processSteps.length * 100}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
@@ -65,7 +64,7 @@ function PinnedProcess() {
 
 function VerticalProcess() {
   return (
-    <div className="py-28 lg:hidden">
+    <div className="py-28 lg:hidden lg:motion-reduce:block!">
       <Container>
         <Eyebrow>Process — how I work</Eyebrow>
         <div className="relative mt-12 space-y-12 border-l border-line pl-8">

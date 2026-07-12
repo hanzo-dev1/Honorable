@@ -16,7 +16,7 @@ type ButtonAsAnchor = ButtonBaseProps &
 type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 font-display text-sm font-medium transition-all duration-[180ms] ease-[var(--ease-decisive)] disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 font-display text-sm font-medium transition-all duration-[180ms] ease-decisive disabled:pointer-events-none disabled:opacity-50";
 
 const variantStyles: Record<ButtonVariant, string> = {
   solid: "rounded-card bg-bone px-6 py-3 text-void hover:bg-white",

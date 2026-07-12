@@ -13,5 +13,5 @@ export const systemLog: LogLine[] = [
   { time: "09:00:06", tag: "paystack", detail: "generated 12 payment links" },
   { time: "09:00:07", tag: "telegram", detail: "sent 12 · inline buttons attached" },
   { time: "09:00:09", tag: "gmail", detail: "sent 12 · HTML receipt template" },
-  { time: "09:00:09", tag: "done", detail: "9.4s · 0 errors · ₦4.2M outstanding", final: true },
+  { time: "09:00:09", tag: "done", detail: "9.4s · 0 errors · NGN 4.2M outstanding", final: true },
 ];
