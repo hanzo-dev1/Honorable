@@ -1,6 +1,6 @@
 import { Mail } from "lucide-react";
 import { Section } from "@/components/ui/Section";
-import { BookCallButton } from "@/components/ui/BookCallButton";
+import { LeadFormTrigger } from "@/components/lead-form/LeadFormTrigger";
 import { LinkedInLogo } from "@/components/logos/LinkedInLogo";
 import { contact } from "@/lib/site";
 
@@ -20,9 +20,9 @@ export function Contact() {
       </h2>
 
       <div className="mt-10 flex justify-center">
-        <BookCallButton className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-8 py-4 font-display text-sm font-medium text-void transition-colors duration-180 ease-decisive hover:bg-white">
+        <LeadFormTrigger className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-8 py-4 font-display text-sm font-medium text-void transition-colors duration-180 ease-decisive hover:bg-white">
           Book a call
-        </BookCallButton>
+        </LeadFormTrigger>
       </div>
 
       <div className="mt-16 flex items-center justify-center gap-4">

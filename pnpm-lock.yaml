@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@typeform/embed-react':
-        specifier: ^5.0.0
-        version: 5.0.0(react@19.2.4)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -495,16 +492,6 @@ packages:
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
-
-  '@typeform/embed-react@5.0.0':
-    resolution: {integrity: sha512-HlBxVJBEtf15Mjp6bYnoO91z2SnOLkqkJCflKsuUEqJSauf1RDSTl0X00AJqOsb+SQ8C7kWkGHceXrlEUii4mg==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      react: '>=16.8.0'
-
-  '@typeform/embed@6.0.0':
-    resolution: {integrity: sha512-ShV9P8/I9Cp24vJEDyb1huWAbPE4T6d7sE6jux03YPH67RzOE5cUrEuZ4vq0rpiGbWvpmhRLSZKspBC8SstN4Q==}
-    engines: {node: '>=18'}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -2307,14 +2294,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
-
-  '@typeform/embed-react@5.0.0(react@19.2.4)':
-    dependencies:
-      '@typeform/embed': 6.0.0
-      fast-deep-equal: 3.1.3
-      react: 19.2.4
-
-  '@typeform/embed@6.0.0': {}
 
   '@types/estree@1.0.9': {}
 

@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import { navLinks } from "@/lib/nav-links";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { cn } from "@/lib/utils";
-import { BookCallButton } from "@/components/ui/BookCallButton";
+import { LeadFormTrigger } from "@/components/lead-form/LeadFormTrigger";
 
 const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 
@@ -85,9 +85,9 @@ export function Nav() {
             </span>
             AVAILABLE — Q3 2026
           </span>
-          <BookCallButton className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-bone transition-colors duration-180 hover:text-signal">
+          <LeadFormTrigger className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-bone transition-colors duration-180 hover:text-signal">
             Book a call →
-          </BookCallButton>
+          </LeadFormTrigger>
         </div>
 
         <button
@@ -126,9 +126,12 @@ export function Nav() {
               ))}
             </nav>
             <div className="border-t border-line px-8 py-8">
-              <BookCallButton className="font-mono text-xs uppercase tracking-[0.14em] text-bone">
+              <LeadFormTrigger
+                onBeforeOpen={() => setMobileOpen(false)}
+                className="font-mono text-xs uppercase tracking-[0.14em] text-bone"
+              >
                 Book a call →
-              </BookCallButton>
+              </LeadFormTrigger>
             </div>
           </motion.div>
         )}
