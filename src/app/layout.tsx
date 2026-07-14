@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { display, editorial, mono } from "./fonts";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { CursorSpotlight } from "@/components/providers/CursorSpotlight";
-import { LeadFormProvider } from "@/components/lead-form/LeadFormProvider";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -101,7 +100,7 @@ export default function RootLayout({
         <div className="bg-grain" aria-hidden />
         <MotionProvider>
           <CursorSpotlight />
-          <LeadFormProvider>{children}</LeadFormProvider>
+          {children}
         </MotionProvider>
       </body>
     </html>

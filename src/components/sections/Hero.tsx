@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { LeadFormTrigger } from "@/components/lead-form/LeadFormTrigger";
+import { BookCallLink } from "@/components/ui/BookCallLink";
 import { SystemPanel } from "@/components/ui/SystemPanel";
 import { reveal, stagger } from "@/lib/motion";
 
@@ -45,9 +45,9 @@ export function Hero() {
             </motion.p>
 
             <motion.div variants={reveal} className="reveal-el mt-10 flex flex-wrap items-center gap-4">
-              <LeadFormTrigger className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-6 py-3 font-display text-sm font-medium text-void transition-colors duration-180 ease-decisive hover:bg-white">
+              <BookCallLink className="inline-flex items-center justify-center gap-2 rounded-card bg-bone px-6 py-3 font-display text-sm font-medium text-void transition-colors duration-180 ease-decisive hover:bg-white">
                 Book a call
-              </LeadFormTrigger>
+              </BookCallLink>
               <Button href="#work" variant="ghost">
                 See the work
               </Button>
